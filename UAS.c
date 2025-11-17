@@ -6,7 +6,7 @@ void lihatAlat() {
     char line[200];
 
     if (!f) {
-        printf("File items.txt tidak ditemukan.\n");
+        printf("File item.txt tidak ditemukan.\n");
         return;
     }
 
