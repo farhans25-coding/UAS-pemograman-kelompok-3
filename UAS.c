@@ -2,7 +2,7 @@
 #include <string.h>
 
 void lihatAlat() {
-    FILE *f = fopen("items.txt", "r");
+    FILE *f = fopen("item.txt", "r");
     char line[200];
 
     if (!f) {
