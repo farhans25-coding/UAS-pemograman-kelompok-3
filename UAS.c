@@ -84,3 +84,16 @@ void pinjamAlat(char user[]) {
 
     printf("Peminjaman berhasil!\n");
 }
+
+void lihatPinjaman(char user[]) {
+    FILE *f = fopen("loans.txt", "r");
+    char u[30], id[20];
+
+    printf("\n=== PINJAMAN KAMU ===\n");
+    while (fscanf(f, "%s %s", u, id) != EOF) {
+        if (strcmp(u, user) == 0) {
+            printf("ID Alat: %s\n", id);
+        }
+    }
+    fclose(f);
+}
