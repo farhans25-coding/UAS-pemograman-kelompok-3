@@ -45,7 +45,6 @@ void tambahAlat() {
 
     printf("✔ Alat berhasil ditambahkan!\n");
 }
-
 void hapusAlat() {
     FILE *f = fopen("item.txt", "r");
     FILE *temp = fopen("temp.txt", "w");
@@ -67,14 +66,13 @@ void hapusAlat() {
                   id, nama, merk, model, &tahun, &jumlah) != EOF) {
 
         if (strcmp(id, target) != 0) {
-            // JIKA BUKAN YANG DIHAPUS → TULIS KE temp.txt
             fprintf(temp, "%s %s %s %s %d %d\n",
                     id, nama, merk, model, tahun, jumlah);
         } else {
-            found = 1; // ketemu
+            found = 1;
         }
-    }
-
+    } 
+    
     fclose(f);
     fclose(temp);
 
@@ -86,6 +84,9 @@ void hapusAlat() {
     else
         printf("ID tidak ditemukan.\n");
 }
+
+
+
 
 void pinjamAlat(char user[]) {
     FILE *f = fopen("loans.txt", "a");
@@ -209,6 +210,7 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
 
 
 
