@@ -145,4 +145,62 @@ void buat_daftar_kosakata_unik(const char *file_input, const char *file_output) 
     free(word_list->entries);
     free(word_list);
 }
+int main() {
+    printf("--- Program Pembuat Kosakata Unik (C) ---\n");
+    
+    
+    FILE *f_example = fopen("lirik.txt", "w");
+    if (f_example) {
+        fprintf(f_example, "[Judul: Perfect - Ed Sheeran]\n");
+        fprintf(f_example, "I found a love for me\n");
+        fprintf(f_example, "Darling, just dive right in and follow my lead\n");
+        fprintf(f_example, "Well, I found a girl, beautiful and sweet\n");
+        fprintf(f_example, "Oh, I never knew you were the one waiting for me\n");
+        fprintf(f_example, "'Cause we were just kids when we fell in love\n");
+        fprintf(f_example, "Not knowing what it was\n");
+        fprintf(f_example, "I will not give you up this time\n");
+        fprintf(f_example, "But darling, just kiss me slow, your heart is all I own\n");
+        fprintf(f_example, "And in your eyes, you're holding mine\n");
+        fprintf(f_example, "\n");
+        fprintf(f_example, "Baby, I'm dancing in the dark with you between my arms\n");
+        fprintf(f_example, "Barefoot on the grass, listening to our favorite song\n");
+        fprintf(f_example, "When you said you looked a mess, I whispered underneath my breath\n");
+        fprintf(f_example, "But you heard it, darling, you look perfect tonight\n");
+        fprintf(f_example, "\n");
+        fprintf(f_example, "I found a man, stronger than anyone I know\n");
+        fprintf(f_example, "He shares my dreams, I hope that someday I'll share his home\n");
+        fprintf(f_example, "I found a love, to carry more than just my secrets\n");
+        fprintf(f_example, "To carry love, to carry children of our own\n");
+        fprintf(f_example, "\n");
+        fprintf(f_example, "'Cause we were just kids when we fell in love\n");
+        fprintf(f_example, "Not knowing what it was\n");
+        fprintf(f_example, "I will not give you up this time\n");
+        fprintf(f_example, "But darling, just kiss me slow, your heart is all I own\n");
+        fprintf(f_example, "And in your eyes, you're holding mine\n");
+        fprintf(f_example, "\n");
+        fprintf(f_example, "Baby, I'm dancing in the dark with you between my arms\n");
+        fprintf(f_example, "Barefoot on the grass, listening to our favorite song\n");
+        fprintf(f_example, "When you said you looked a mess, I whispered underneath my breath\n");
+        fprintf(f_example, "But you heard it, darling, you look perfect tonight\n");
+        fprintf(f_example, "\n");
+        fprintf(f_example, "Baby, I'm dancing in the dark with you between my arms\n");
+        fprintf(f_example, "Barefoot on the grass, listening to our favorite song\n");
+        fprintf(f_example, "I have faith in what I see\n");
+        fprintf(f_example, "Now I know I have met an angel in person\n");
+        fprintf(f_example, "And she looks perfect\n");
+        fprintf(f_example, "I don't deserve this\n");
+        fprintf(f_example, "You look perfect tonight\n");
+        fclose(f_example);
+        printf("File 'lirik.txt' berhasil dibuat dengan lirik Perfect (Full Version).\n");
+        printf("mantab\n");
+    } else {
+        fprintf(stderr, "Gagal membuat file lirik.txt.\n");
+        return 1;
+    }
+
+    
+    buat_daftar_kosakata_unik("lirik.txt", "kosa-kata.word");
+
+    return 0;
+}
 
