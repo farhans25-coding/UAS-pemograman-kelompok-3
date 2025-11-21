@@ -86,4 +86,17 @@ void hapusAlat() {
         printf("ID tidak ditemukan.\n");
 }
 
+void pinjamAlat(char user[]) {
+    FILE *f = fopen("loans.txt", "a");
+    char id[20];
+
+    printf("Masukkan ID alat yg dipinjam: ");
+    scanf("%s", id);
+
+    fprintf(f, "%s %s\n", user, id);
+    fclose(f);
+
+    printf("✔ Peminjaman berhasil!\n");
+}
+
 
