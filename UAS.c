@@ -119,3 +119,50 @@ void lihatPinjaman(char user[]) {
     fclose(f);
 }
 
+void menuAdmin() {
+    int pilih;
+
+    do {
+        printf("\n=== MENU ADMIN ===\n");
+        printf("1. Lihat Alat\n");
+        printf("2. Tambah Alat\n");
+        printf("3. Hapus Alat\n");
+        printf("4. Keluar\n");
+        printf("Pilih: ");
+        scanf("%d", &pilih);
+
+        switch(pilih) {
+            case 1: lihatAlat(); break;
+            case 2: tambahAlat(); break;
+            case 3: hapusAlat(); break;
+            case 4: printf("Keluar...\n"); break;
+            default: printf("Pilihan tidak valid.\n");
+        }
+
+    } while (pilih != 4);
+}
+
+void menuUser(char username[]) {
+    int pilih;
+
+    do {
+        printf("\n=== MENU USER ===\n");
+        printf("1. Lihat Alat\n");
+        printf("2. Pinjam Alat\n");
+        printf("3. Lihat Pinjaman\n");
+        printf("4. Keluar\n");
+        printf("Pilih: ");
+        scanf("%d", &pilih);
+
+        switch(pilih) {
+            case 1: lihatAlat(); break;
+            case 2: pinjamAlat(username); break;
+            case 3: lihatPinjaman(username); break;
+            case 4: printf("Keluar...\n"); break;
+            default: printf("Pilihan tidak valid.\n");
+        }
+
+    } while (pilih != 4);
+}
+
+
