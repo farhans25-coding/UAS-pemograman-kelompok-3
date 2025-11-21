@@ -77,4 +77,72 @@ void process_and_add_word(UniqueWordList *list, char *token) {
     add_word(list, processed_word);
 }
 
+void buat_daftar_kosakata_unik(const char *file_input, const char *file_output) {
+    FILE *fin = NULL;
+    FILE *fout = NULL;
+    char line[MAX_LINE_LENGTH];
+    char title[MAX_LINE_LENGTH] = "";
+    UniqueWordList *word_list = create_list(50);
+
+    if ((fin = fopen(file_input, "r")) == NULL) {
+        fprintf(stderr, "Error: Tidak dapat membuka file input '%s'\n", file_input);
+        free(word_list->entries);
+        free(word_list);
+        return;
+    }
+
+    int is_first_line = 1;
+    while (fgets(line, MAX_LINE_LENGTH, fin) != NULL) {
+        line[strcspn(line, "\n")] = 0;
+
+        if (is_first_line) {
+            if (strstr(line, "[Judul:") != NULL) {
+                strncpy(title, line, MAX_LINE_LENGTH - 1);
+                title[MAX_LINE_LENGTH - 1] = '\0';
+            }
+            is_first_line = 0;
+        }
+
+        char *temp_line = strdup(line);
+        if (!temp_line) {
+            perror("Gagal alokasi memori temp_line");
+            break;
+        }
+
+        for (char *c = temp_line; *c; c++) {
+            if (!isalnum((unsigned char)*c) && *c != '\'') {
+                *c = ' ';
+            }
+        }
+
+        char *token = strtok(temp_line, " ");
+        while (token != NULL) {
+            process_and_add_word(word_list, token);
+            token = strtok(NULL, " ");
+        }
+
+        free(temp_line);
+    }
+    
+    fclose(fin);
+
+    if ((fout = fopen(file_output, "w")) == NULL) {
+        fprintf(stderr, "Error: Tidak dapat membuka file output '%s'\n", file_output);
+    } else {
+        if (strlen(title) > 0) {
+            fprintf(fout, "%s\n", title);
+        }
+
+        for (int i = 0; i < word_list->count; i++) {
+            fprintf(fout, "%s=\n", word_list->entries[i].word);
+        }
+
+        fclose(fout);
+        printf("Berhasil! Daftar kosakata keren telah disimpan ke '%s' (%d kata).\n",
+               file_output, word_list->count);
+    }
+
+    free(word_list->entries);
+    free(word_list);
+}
 
