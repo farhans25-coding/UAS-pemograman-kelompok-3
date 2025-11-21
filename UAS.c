@@ -165,5 +165,51 @@ void menuUser(char username[]) {
     } while (pilih != 4);
 }
 
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("Cara pakai:\n");
+        printf("program.exe <username> <password>\n");
+        return 0;
+    }
+
+    char username[50], password[50], role[20];
+    strcpy(username, argv[1]);
+    strcpy(password, argv[2]);
+
+    FILE *f = fopen("akun.txt", "r");
+    if (!f) {
+        printf("File users.txt tidak ditemukan.\n");
+        return 0;
+    }
+
+    int login = 0;
+    char u[50], p[50], r[20];
+
+    while (fscanf(f, "%s %s %s", u, p, r) != EOF) {
+        if (strcmp(u, username) == 0 && strcmp(p, password) == 0) {
+            login = 1;
+            strcpy(role, r);
+            break;
+        }
+    }
+
+    fclose(f);
+
+    if (!login) {
+        printf("Login gagal!\n");
+        return 0;
+    }
+
+    if (strcmp(role, "admin") == 0) {
+        menuAdmin();
+    } else {
+        menuUser(username);
+    }
+
+    return 0;
+}
+
+
+
 
 
